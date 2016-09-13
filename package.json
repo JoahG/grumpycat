@@ -1,0 +1,19 @@
+{
+  "name": "grumpycat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joahg/grumpycat.git"
+  },
+  "author": "Joah Gerstenberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joahg/grumpycat/issues"
+  },
+  "homepage": "https://github.com/joahg/grumpycat#readme",
+  "dependencies": {
+    "@slack/client": "^3.6.0"
+  }
+}
