@@ -15,8 +15,10 @@ slack.on(CLIENT_EVENTS.RTM.AUTHENTICATED, function (rtmStartData) {
 });
 
 slack.on(CLIENT_EVENTS.MESSAGE, function (message) {
+  var user = slack.dataStore.getUserById(message.user)
+
   // Listens to all `message` events from the team 
-  console.log(message);
+  console.log(user.name + ' said "' + message.text);
 });
 
 slack.on(CLIENT_EVENTS.CHANNEL_CREATED, function (message) {
