@@ -1,3 +1,4 @@
+var SlackClient = require('@slack/client');
 var express = require('express');
 var app = express();
 
@@ -9,13 +10,8 @@ app.listen(process.env.PORT || 8080);
 
 
 
-
-var SlackClient = require('@slack/client');
-
-
-
 var slack = new SlackClient.RtmClient(process.env.SLACK_API_TOKEN || '', {
-  logLevel: 'debug',
+  logLevel: 'error',
   dataStore: new SlackClient.MemoryDataStore()
 });
 
