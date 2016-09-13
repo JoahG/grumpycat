@@ -15,5 +15,8 @@
   "homepage": "https://github.com/joahg/grumpycat#readme",
   "dependencies": {
     "@slack/client": "^3.6.0"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }

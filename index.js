@@ -4,7 +4,7 @@ var SlackClient = require('@slack/client');
 
 var slack = new SlackClient.RtmClient(process.env.SLACK_API_TOKEN || '', {
   logLevel: 'debug',
-  dataStore: new SlackClient.MemoryDataStore();
+  dataStore: new SlackClient.MemoryDataStore()
 });
 
 
