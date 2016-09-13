@@ -9,6 +9,8 @@ app.get('/', function(req, res) {
 app.listen(process.env.PORT || 8080);
 
 
+var store = {};
+
 
 var slack = new SlackClient.RtmClient(process.env.SLACK_API_TOKEN || '', {
   logLevel: 'error',
@@ -19,18 +21,7 @@ var slack = new SlackClient.RtmClient(process.env.SLACK_API_TOKEN || '', {
 var CLIENT_EVENTS = SlackClient.CLIENT_EVENTS;
  
 slack.on(CLIENT_EVENTS.RTM.AUTHENTICATED, function (rtmStartData) {
-  console.log(`Logged in as ${rtmStartData.self.name} of team ${rtmStartData.team.name}, but not yet connected to a channel`);
-});
-
-slack.on(CLIENT_EVENTS.MESSAGE, function (message) {
-  var user = slack.dataStore.getUserById(message.user)
-
-  // Listens to all `message` events from the team 
-  console.log(user.name + ' said "' + message.text);
-});
-
-slack.on(CLIENT_EVENTS.CHANNEL_CREATED, function (message) {
-  // Listens to all `channel_created` events from the team 
+  console.log(`Logged in as ${rtmStartData.self.name} of team ${rtmStartData.team.name}`);
 });
 
 slack.on(CLIENT_EVENTS.RTM.RTM_CONNECTION_OPENED, function() {
@@ -44,6 +35,33 @@ slack.on(CLIENT_EVENTS.RTM.RTM_CONNECTION_OPENED, function() {
   console.log('Connected to ' + team.name + ' as ' + user.name);
 });
 
+
+var RTM_EVENTS = SlackClient.RTM_EVENTS;
+
+
+slack.on(RTM_EVENTS.MESSAGE, function (message) {
+  var user = slack.dataStore.getUserById(message.user)
+
+  // Listens to all `message` events from the team 
+  console.log(user.name + ' said "' + message.text);
+
+  if (/\<\@\w+\>(\+\+)/gi.test(message.text)) {
+    var targetedUser = slack.dataStore.getUserById(message.text.match(/\<\@\w+\>/gi)[0].split('<@')[1].split('>')[0]);
+
+    if (targetedUser.name == user.name) {
+      slack.sendMessage('you can\'t upvote yourself, dumbass', message.channel);
+      return;
+    }
+
+    if (!store[targetedUser.name]) store[targetedUser.name] = 0;
+    slack.sendMessage('@' + targetedUser.name + ' now has ' + ++store[targetedUser.name] + ' karma points.', message.channel)
+  } else if (/\<\@\w+\>(\-\-)/gi.test(message.text)) {
+    var targetedUser = slack.dataStore.getUserById(message.text.match(/\<\@\w+\>/gi)[0].split('<@')[1].split('>')[0]);
+
+    if (!store[targetedUser.name]) store[targetedUser.name] = 0;
+    slack.sendMessage('@' + targetedUser.name + ' now has ' + --store[targetedUser.name] + ' karma points.', message.channel)
+  }
+});
 
 
 slack.start();
