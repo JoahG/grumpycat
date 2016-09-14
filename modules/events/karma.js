@@ -49,7 +49,7 @@ module.exports = function(message) {
     if (action == 'downvote') user.karma--;
 
     user.save(function() {
-      connection.sendMessage('<@' + targetedUser + '> now has ' + user.karma + ' karma points.', message.channel);
+      connection.sendMessage('<@' + targetedUser + '> now has ' + user.karma + ' karma.', message.channel);
     });
   });
 };
