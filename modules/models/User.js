@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('PermissionsUser', { 
+module.exports = mongoose.model('User', { 
   id: String, 
   isBanned: {
     type: Boolean,
@@ -9,5 +9,9 @@ module.exports = mongoose.model('PermissionsUser', {
   isAdmin: {
     type: Boolean,
     default: false
-  }
+  },
+  karma: { 
+    type: Number, 
+    default: 0 
+  } 
 });

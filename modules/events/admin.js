@@ -1,7 +1,6 @@
 var connection = require('../slack.js').connection,
     permissions = require('../permissions/index.js'),
-    PermissionsUser = require('../models/index.js').PermissionsUser,
-    KarmaUser = require('../models/index.js').KarmaUser;
+    User = require('../models/index.js').User;
 
 module.exports = function(message) {
   permissions.isAdmin(message.user, function(isAdmin) {
@@ -11,11 +10,11 @@ module.exports = function(message) {
     }
 
     if (/^!admin\sban\s\<\@(.+)\>/.test(message.text)) {
-      PermissionsUser.findOne({
+      User.findOne({
         id: /^!admin\sban\s\<\@(.+)\>/.exec(message.text)[1]
       }, function(err, user) {
         if (user == null) {
-          user = new PermissionsUser({
+          user = new User({
             id: /^!admin\sban\s\<\@(.+)\>/.exec(message.text)[1]
           });
         } 
@@ -26,11 +25,11 @@ module.exports = function(message) {
         });
       });
     } else if (/^!admin\sunban\s\<\@(.+)\>/.test(message.text)) {
-      PermissionsUser.findOne({
+      User.findOne({
         id: /^!admin\sunban\s\<\@(.+)\>/.exec(message.text)[1]
       }, function(err, user) {
         if (user == null) {
-          user = new PermissionsUser({
+          user = new User({
             id: /^!admin\sunban\s\<\@(.+)\>/.exec(message.text)[1]
           });
         } 
@@ -41,11 +40,11 @@ module.exports = function(message) {
         });
       });
     } else if (/^!admin\spromote\s\<\@(.+)\>/.test(message.text)) {
-      PermissionsUser.findOne({
+      User.findOne({
         id: /^!admin\spromote\s\<\@(.+)\>/.exec(message.text)[1]
       }, function(err, user) {
         if (user == null) {
-          user = new PermissionsUser({
+          user = new User({
             id: /^!admin\spromote\s\<\@(.+)\>/.exec(message.text)[1]
           });
         } 
@@ -56,11 +55,11 @@ module.exports = function(message) {
         });
       });
     } else if (/^!admin\sdemote\s\<\@(.+)\>/.test(message.text)) {
-      PermissionsUser.findOne({
+      User.findOne({
         id: /^!admin\sdemote\s\<\@(.+)\>/.exec(message.text)[1]
       }, function(err, user) {
         if (user == null) {
-          user = new PermissionsUser({
+          user = new User({
             id: /^!admin\sdemote\s\<\@(.+)\>/.exec(message.text)[1]
           });
         } 
@@ -71,11 +70,11 @@ module.exports = function(message) {
         });
       });
     } else if (/^!admin\ssetKarma\s\<\@(.+)\>\s(-?\d+)/.test(message.text)) {
-      KarmaUser.findOne({
+      User.findOne({
         id: /^!admin\ssetKarma\s\<\@(.+)\>\s(-?\d+)/.exec(message.text)[1]
       }, function(err, user) {
         if (user == null) {
-          user = new KarmaUser({
+          user = new User({
             id: /^!admin\ssetKarma\s\<\@(.+)\>\s(-?\d+)/.exec(message.text)[1]
           });
         } 

@@ -1,5 +1,5 @@
 var connection = require('../slack.js').connection,
-    KarmaUser = require('../models/index.js').KarmaUser,
+    User = require('../models/index.js').User,
     permissions = require('../permissions/index.js');
 
 module.exports = function(message) {
@@ -28,11 +28,11 @@ module.exports = function(message) {
 
     console.log(connection.dataStore.getUserById(actingUser).name + ' just ' + action + 'd ' + connection.dataStore.getUserById(targetedUser).name);
 
-    KarmaUser.findOne({
+    User.findOne({
       id: targetedUser
     }, function(err, user) {
       if (user == null) {
-        var user = new KarmaUser({
+        var user = new User({
           id: targetedUser
         });
       }

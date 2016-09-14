@@ -1,5 +1,5 @@
 var connection = require('../slack.js').connection,
-    PermissionsUser = require('../models/index.js').PermissionsUser;
+    User = require('../models/index.js').User;
 
 module.exports = function(userId, callback) {
   if (process.env.BANNED_USERS && process.env.BANNED_USERS.split(',').indexOf(connection.dataStore.getUserById(userId).name) > -1) {
@@ -7,7 +7,7 @@ module.exports = function(userId, callback) {
     return;
   }
 
-  PermissionsUser.find({
+  User.find({
     id: userId,
     isBanned: true
   }, function(err, user) {
