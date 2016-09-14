@@ -16,7 +16,7 @@ Slack bot with some simple utilities
 
    - Decides between two (or more) things 
    - Usage: `!decide this or that` in a channel where the bot is active
-   - Code: [`/modules/events/karma.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/decide.js)
+   - Code: [`/modules/events/decide.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/decide.js)
 
 ## Contributing
 
