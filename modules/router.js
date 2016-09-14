@@ -17,4 +17,8 @@ connection.on(client.RTM_EVENTS.MESSAGE, function (message) {
   if (/^!(info|learn|forget)\s(.+)/.test(message.text)) {
     Events.InfoHandler(message);
   }
+
+  if (/^!admin\s(ban|unban|promote|demote|setKarma)\s\<\@.+\>/.test(message.text)) {
+    Events.AdminHandler(message);
+  }
 });

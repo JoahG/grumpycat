@@ -36,12 +36,14 @@ module.exports = function(message) {
       key: /^!forget\s(.+)/.exec(message.text)[1]
     }, function(err, info) {
       if (info.length > 0) {
-        if (info[0].created_by !== message.user && !permissions.isAdmin(message.user)) {
-          connection.sendMessage('Cannot forget <@' + info[0].created_by +'>\'s note.', message.channel);
-          return;
-        }
-        InfoValue.remove({ key: info[0].key }, function() {
-          connection.sendMessage('What were we talking about?', message.channel);
+        permissions.isAdmin(message.user, function(isAdmin) {
+          if (info[0].created_by !== message.user && !isAdmin) {
+            connection.sendMessage('Cannot forget <@' + info[0].created_by +'>\'s note.', message.channel);
+            return;
+          }
+          InfoValue.remove({ key: info[0].key }, function() {
+            connection.sendMessage('What were we talking about?', message.channel);
+          });
         });
       } else {
         connection.sendMessage('Info does not exist for key.', message.channel)
