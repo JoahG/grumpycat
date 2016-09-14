@@ -16,6 +16,12 @@ module.exports = function(message) {
       targetedUser = /\<\@(\w+)\>/gi.exec(message.text)[1],
       action = undefined;
 
+
+  if (process.env.BANNED_USERS && JSON.parse(process.env.BANNED_USERS).indexOf(connection.dataStore.getUserById(actingUser)) > -1) { 
+    connection.sendMessage('You are banned.', connection.dataStore.getDMByName(connection.dataStore.getUserById(actingUser)));
+    return false;
+  }
+
   if (/\<\@\w+\>(\+\+)/gi.test(message.text)) {
     if (targetedUser == actingUser) {
       connection.sendMessage('You can\'t upvote yourself, dumbass', message.channel);
