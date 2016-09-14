@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/grumpycat');
 
-var KarmaUser = mongoose.actionl('KarmaUser', { 
+var KarmaUser = mongoose.model('KarmaUser', { 
   id: String, 
   karma: { 
     type: Number, 
