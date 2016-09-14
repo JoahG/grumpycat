@@ -72,11 +72,11 @@ module.exports = function(message) {
       });
     } else if (/^!admin\ssetKarma\s\<\@(.+)\>\s(-?\d+)/.test(message.text)) {
       KarmaUser.findOne({
-        id: /^!admin\ssetKarma\s\<\@(.+)\>\s(\d+)/.exec(message.text)[1]
+        id: /^!admin\ssetKarma\s\<\@(.+)\>\s(-?\d+)/.exec(message.text)[1]
       }, function(err, user) {
         if (user == null) {
           user = new KarmaUser({
-            id: /^!admin\ssetKarma\s\<\@(.+)\>/.exec(message.text)[1]
+            id: /^!admin\ssetKarma\s\<\@(.+)\>\s(-?\d+)/.exec(message.text)[1]
           });
         } 
 
