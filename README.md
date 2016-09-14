@@ -9,14 +9,23 @@ Slack bot with some simple utilities
 ### Karma
 
    - Keeps track of a user's karma
-   - Usage: `@username++` or `@username--` in a channel where the bot is active.
+   - Usage: `@username++` or `@username--`
    - Code: [`/modules/events/karma.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/karma.js)
 
 ### Decide
 
    - Decides between two (or more) things 
-   - Usage: `!decide this or that` in a channel where the bot is active
+   - Usage: `!decide this or that`
    - Code: [`/modules/events/decide.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/decide.js)
+
+### Info
+
+  - Records/retrieves information
+  - Usage: 
+     - Record info: `!learn [key] as [value]`
+     - Retrieve info: `!info [key]`
+     - Forget info: `!forget [key]`
+  - Code: [`/modules/events/info.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/info.js)
 
 ## Contributing
 

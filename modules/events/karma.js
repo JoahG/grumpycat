@@ -1,22 +1,13 @@
-var connection = require('../slack.js').connection;
-var mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/grumpycat');
-
-var KarmaUser = mongoose.model('KarmaUser', { 
-  id: String, 
-  karma: { 
-    type: Number, 
-    default: 0 
-  } 
-});
+var connection = require('../slack.js').connection,
+    KarmaUser = require('../models/index.js').KarmaUser,
+    permissions = require('../permissions/index.js');
 
 module.exports = function(message) {
   var actingUser = message.user,
       targetedUser = /\<\@(\w+)\>/gi.exec(message.text)[1],
       action = undefined;
 
-  if (process.env.BANNED_USERS && JSON.parse(process.env.BANNED_USERS).indexOf(connection.dataStore.getUserById(actingUser).name) > -1) { 
+  if (permissions.isBanned(actingUser)) { 
     connection.sendMessage('You are banned.', message.channel);
     return false;
   }

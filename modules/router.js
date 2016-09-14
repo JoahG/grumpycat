@@ -1,6 +1,9 @@
 var client = require('./slack.js').client, 
     connection = require('./slack.js').connection,
-    Events = require('./events/index.js');
+    Events = require('./events/index.js'),
+    mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/grumpycat');
 
 connection.on(client.RTM_EVENTS.MESSAGE, function (message) {
   if (/\<\@\w+\>(\+\+|\-\-|\—)/gi.test(message.text)) {
@@ -9,5 +12,9 @@ connection.on(client.RTM_EVENTS.MESSAGE, function (message) {
 
   if (/^\!decide/.test(message.text)) {
     Events.DecideHandler(message);
+  }
+
+  if (/^!(info|learn|forget)\s(.+)/.test(message.text)) {
+    Events.InfoHandler(message);
   }
 });
