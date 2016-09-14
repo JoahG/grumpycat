@@ -28,7 +28,7 @@ module.exports = function(message) {
     }
 
     action = 'upvote';
-  } else if (/\<\@\w+\>(\-\-)/gi.test(message.text)) {
+  } else if (/\<\@\w+\>(\-\-|\–)/gi.test(message.text)) {
     action = 'downvote';
   }
 

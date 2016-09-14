@@ -3,7 +3,7 @@ var client = require('./slack.js').client,
     Events = require('./events/index.js');
 
 connection.on(client.RTM_EVENTS.MESSAGE, function (message) {
-  if (/\<\@\w+\>(\+\+|\-\-)/gi.test(message.text)) {
+  if (/\<\@\w+\>(\+\+|\-\-|\–)/gi.test(message.text)) {
     Events.KarmaHandler(message);
   }
 
