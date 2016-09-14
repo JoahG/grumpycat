@@ -70,7 +70,7 @@ module.exports = function(message) {
           connection.sendMessage('<@' + user.id + '> is no longer an admin.', message.channel);
         });
       });
-    } else if (/^!admin\ssetKarma\s\<\@(.+)\>\s(\d+)/.test(message.text)) {
+    } else if (/^!admin\ssetKarma\s\<\@(.+)\>\s(-?\d+)/.test(message.text)) {
       KarmaUser.findOne({
         id: /^!admin\ssetKarma\s\<\@(.+)\>\s(\d+)/.exec(message.text)[1]
       }, function(err, user) {

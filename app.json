@@ -6,6 +6,14 @@
   "env": {
     "SLACK_API_TOKEN": {
       "description": "API token for Slack Bot Integration API (http://slack.com/services)"
+    },
+    "ADMIN_USERS": {
+      "description": "Comma-delimited list of users to make permanent (un-demotable) admins.",
+      "required": false
+    },
+    "BANNED_USERS": {
+      "description": "Comma-delimited list of users to make permanently (non-unbannable) banned.",
+      "required": false
     }
   },
   "addons": [
