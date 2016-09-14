@@ -39,6 +39,7 @@ Slack bot with some simple utilities
     - `!admin setKarma @username [karmaAmount]` - sets karma value on user
   - The initial (and permanent) Admin users should be set in a comma-delimited list in the `ADMIN_USERS` environment variable.
   - You can also optionally set permanently banned users in a comma-delimited list in the `BANNED_USERS` environment variable.
+  - Code: [`/modules/events/admin.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/admin.js)
 
 ## Contributing
 
