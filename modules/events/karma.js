@@ -16,9 +16,10 @@ module.exports = function(message) {
       targetedUser = /\<\@(\w+)\>/gi.exec(message.text)[1],
       action = undefined;
 
+  console.log(connection.dataStore.getUserById(actingUser).name);
 
-  if (process.env.BANNED_USERS && JSON.parse(process.env.BANNED_USERS).indexOf(connection.dataStore.getUserById(actingUser)) > -1) { 
-    connection.sendMessage('You are banned.', connection.dataStore.getDMByName(connection.dataStore.getUserById(actingUser)));
+  if (process.env.BANNED_USERS && JSON.parse(process.env.BANNED_USERS).indexOf(connection.dataStore.getUserById(actingUser).name) > -1) { 
+    connection.sendMessage('You are banned.', connection.dataStore.getDMByName(connection.dataStore.getUserById(actingUser).name).id);
     return false;
   }
 
