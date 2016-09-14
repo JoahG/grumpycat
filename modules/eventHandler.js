@@ -1,5 +1,6 @@
-var { client, connection } = require('./slack.js');
-var Events = require('./events/index.js');
+var client = require('./slack.js').client, 
+    connection = require('./slack.js').connection,
+    Events = require('./events/index.js');
 
 connection.on(client.RTM_EVENTS.MESSAGE, function (message) {
   if (/\<\@\w+\>(\+\+|\-\-)/gi.test(message.text)) {

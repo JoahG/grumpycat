@@ -1,4 +1,4 @@
-var { connection } = require('../slack.js');
+var connection = require('../slack.js').connection;
 
 module.exports = function(message) {
   var choices = message.text.split('!decide')[1].split(' or ');

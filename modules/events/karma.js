@@ -1,4 +1,4 @@
-var { connection } = require('../slack.js');
+var connection = require('../slack.js').connection;
 var mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/grumpycat');
