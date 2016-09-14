@@ -1,0 +1,16 @@
+{
+  "name": "grumpycat",
+  "description": "Slack bot with some simple utilities",
+  "repository": "https://github.com/JoahG/grumpycat",
+  "keywords": ["slack", "node", "javascript", "slackbot"],
+  "env": {
+    "SLACK_API_TOKEN": {
+      "description": "API token for Slack Bot Integration API (http://slack.com/services)"
+    }
+  },
+  "addons": [
+    {
+      "plan": "mongolab:sandbox"
+    }
+  ]
+}
