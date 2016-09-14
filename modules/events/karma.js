@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/grumpycat');
 
-var KarmaUser = mongoose.model('KarmaUser', { 
+var KarmaUser = mongoose.actionl('KarmaUser', { 
   id: String, 
   karma: { 
     type: Number, 
@@ -14,7 +14,7 @@ var KarmaUser = mongoose.model('KarmaUser', {
 module.exports = function(message) {
   var actingUser = message.user,
       targetedUser = /\<\@(\w+)\>/gi.exec(message.text)[1],
-      mode = undefined;
+      action = undefined;
 
   if (/\<\@\w+\>(\+\+)/gi.test(message.text)) {
     if (targetedUser == actingUser) {
@@ -22,12 +22,12 @@ module.exports = function(message) {
       return;
     }
 
-    mode = 'upvote';
+    action = 'upvote';
   } else if (/\<\@\w+\>(\-\-)/gi.test(message.text)) {
-    mode = 'downvote';
+    action = 'downvote';
   }
 
-  if (!mode) return;
+  if (!action) return;
 
   KarmaUser.findOne({
     id: targetedUser
@@ -38,8 +38,8 @@ module.exports = function(message) {
       });
     }
 
-    if (mode == 'upvote') user.karma++;
-    if (mode == 'downvote') user.karma--;
+    if (action == 'upvote') user.karma++;
+    if (action == 'downvote') user.karma--;
 
     user.save(function() {
       connection.sendMessage('<@' + targetedUser + '> now has ' + user.karma + ' karma points.', message.channel);
