@@ -14,7 +14,7 @@ connection.on(client.RTM_EVENTS.MESSAGE, function (message) {
     Events.DecideHandler(message);
   }
 
-  if (/^!(info|learn|forget)\s(.+)/.test(message.text)) {
+  if (/^!(info|learn|forget|find)\s(.+)/.test(message.text)) {
     Events.InfoHandler(message);
   }
 

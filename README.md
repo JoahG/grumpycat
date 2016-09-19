@@ -25,6 +25,8 @@ Slack bot with some simple utilities
      - Record info: `!learn [key] as [value]`
      - Retrieve info: `!info [key]`
      - Forget info: `!forget [key]`
+     - Search info: `!find [key]`
+        - Does a search on the keys in the database for the queried key.
   - Code: [`/modules/events/info.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/info.js)
 
 ### Permissions/Admin tools

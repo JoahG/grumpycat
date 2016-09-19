@@ -49,5 +49,17 @@ module.exports = function(message) {
         connection.sendMessage('Info does not exist for key.', message.channel)
       }
     });
+  } else if (/^!find\s(.+)/.test(message.text)) {
+    InfoValue.find({
+      key: new RegExp(/^!find\s(.+)/.exec(message.text)[1], 'ig')
+    }, function(err, info) {
+      if (info.length > 0) {
+        connection.sendMessage('Results: \n' + info.map(function(i) {
+          return '   - ' + i.key + ': ' + i.value + '\n';
+        }), message.channel);
+      } else {
+        connection.sendMessage('No results.', message.channel)
+      }
+    });
   }
 };
