@@ -1,10 +1,12 @@
 var connection = require('../slack.js').connection,
     Task = require('../models/index.js').Task,
     permissions = require('../permissions/index.js'),
-    moment = require('moment');
+    moment = require('moment'),
+    momentTimezone = require('moment-timezone');
 
 var DoneHandler = function(message) {
-  var actingUser = message.user;
+  var actingUser = message.user,
+      userObj = connection.dataStore.getUserById(actingUser);
 
   if (/^!done\s(.+)/.test(message.text)) {
     var newTask = new Task({
@@ -14,7 +16,7 @@ var DoneHandler = function(message) {
     });
 
     newTask.save(function() {
-      connection.sendMessage(moment(newTask.completed_at).format('h:mma') + ': ' + newTask.task, message.channel);
+      connection.sendMessage(moment(newTask.completed_at).tz(userObj.tz).format('h:mma') + ': ' + newTask.task, message.channel);
     });
   } else {
     Task.find({
@@ -26,7 +28,7 @@ var DoneHandler = function(message) {
     }, function(err, tasks) {
       if (tasks.length > 0) {
         connection.sendMessage('You have completed today: \n' + tasks.map(function(task) {
-          return '   - ' + moment(task.completed_at).format('h:mma') + ': ' + task.task;
+          return '   - ' + moment(task.completed_at).tz(userObj.tz).format('h:mma') + ': ' + task.task;
         }).join('\n'), message.channel)
       } else {
         connection.sendMessage('You don\'t have any completed tasks today.', message.channel)
