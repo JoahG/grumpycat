@@ -55,8 +55,8 @@ module.exports = function(message) {
     }, function(err, info) {
       if (info.length > 0) {
         connection.sendMessage('Results: \n' + info.map(function(i) {
-          return '   - ' + i.key + ': ' + i.value + '\n';
-        }), message.channel);
+          return '   - ' + i.key + ': ' + i.value;
+        }).join('\n'), message.channel);
       } else {
         connection.sendMessage('No results.', message.channel)
       }
