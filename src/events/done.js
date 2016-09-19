@@ -2,7 +2,6 @@
 
 import { connection } from '../slack.js';
 import { Task } from '../models';
-import permissions from '../permissions';
 import moment from 'moment';
 import 'moment-timezone';
 

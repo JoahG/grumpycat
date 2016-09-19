@@ -1,11 +1,11 @@
 'use strict';
 
 import { connection } from '../slack.js';
-import permissions from '../permissions';
+import { isAdmin } from '../permissions';
 import { User } from '../models';
 
 var AdminHandler = function(message) {
-  permissions.isAdmin(message.user, function(isAdmin) {
+  isAdmin(message.user, function(isAdmin) {
     if (!isAdmin) {
       connection.sendMessage('You\'re not an admin.', message.channel);
       return;
