@@ -2,6 +2,8 @@
 
 Slack bot with some simple utilities
 
+![grumpycat](https://raw.githubusercontent.com/JoahG/grumpycat/master/grumpycat.png)
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Features
