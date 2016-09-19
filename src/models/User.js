@@ -1,6 +1,8 @@
-var mongoose = require('mongoose');
+'use strict';
 
-module.exports = mongoose.model('User', { 
+import mongoose from 'mongoose';
+
+export default mongoose.model('User', { 
   id: String, 
   isBanned: {
     type: Boolean,

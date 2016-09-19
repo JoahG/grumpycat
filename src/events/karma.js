@@ -1,13 +1,15 @@
-var connection = require('../slack.js').connection,
-    User = require('../models/index.js').User,
-    permissions = require('../permissions/index.js');
+'use strict';
+
+import { connection } from '../slack.js';
+import { User } from '../models';
+import { isBanned } from '../permissions';
 
 var KarmaHandler = function(message) {
   var actingUser = message.user,
       targetedUser = /\<\@(\w+)\>/gi.exec(message.text)[1],
       action = undefined;
 
-  permissions.isBanned(actingUser, function(isBanned) {
+  isBanned(actingUser, function(isBanned) {
     if (isBanned) {
       connection.sendMessage('You are banned.', message.channel);
       return false;
@@ -28,6 +30,8 @@ var KarmaHandler = function(message) {
 
     console.log(connection.dataStore.getUserById(actingUser).name + ' just ' + action + 'd ' + connection.dataStore.getUserById(targetedUser).name);
 
+
+
     User.findOne({
       id: targetedUser
     }, function(err, user) {
@@ -47,9 +51,9 @@ var KarmaHandler = function(message) {
   });
 };
 
-module.exports = {
+export default {
   exec: KarmaHandler,
   test: function(messageText) {
     return /\<\@\w+\>(\+\+|\-\-|\—)/gi.test(messageText);
   }
-}
+};

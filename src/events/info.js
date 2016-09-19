@@ -1,6 +1,8 @@
-var connection = require('../slack.js').connection,
-    InfoValue = require('../models/index.js').InfoValue,
-    permissions = require('../permissions/index.js');
+'use strict';
+
+import { connection } from '../slack.js';
+import { InfoValue } from '../models';
+import { isAdmin } from '../permissions';
 
 var InfoHandler = function(message) {
   if (/^!info\s(.+)/.test(message.text)) {
@@ -36,7 +38,7 @@ var InfoHandler = function(message) {
       key: /^!forget\s(.+)/.exec(message.text)[1]
     }, function(err, info) {
       if (info.length > 0) {
-        permissions.isAdmin(message.user, function(isAdmin) {
+        isAdmin(message.user, function(isAdmin) {
           if (info[0].created_by !== message.user && !isAdmin) {
             connection.sendMessage('Cannot forget <@' + info[0].created_by +'>\'s note.', message.channel);
             return;
@@ -64,7 +66,7 @@ var InfoHandler = function(message) {
   }
 };
 
-module.exports = {
+export default {
   exec: InfoHandler,
   test: function(messageText) {
     return /^!(info|learn|forget|find)\s(.+)/.test(messageText);

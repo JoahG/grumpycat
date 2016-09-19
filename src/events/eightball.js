@@ -1,6 +1,8 @@
-var connection = require('../slack.js').connection;
+'use strict';
 
-var answers = [
+import { connection } from '../slack.js';
+
+const answers = [
   'It is certain.',
   'It is decidedly so.',
   'Without a doubt.',
@@ -23,11 +25,11 @@ var answers = [
   'Very doubtful.'
 ];
 
-EightballHandler = function(message) {
+var EightballHandler = function(message) {
   connection.sendMessage(answers[[Math.floor(Math.random() * answers.length)]], message.channel)
 };
 
-module.exports = {
+export default {
   exec: EightballHandler,
   test: function(messageText) {
     return /\<\@(.*)\>.*\?/gi.test(messageText) && /\<\@(.*)\>.*\?/gi.exec(messageText)[1] == connection.activeUserId;

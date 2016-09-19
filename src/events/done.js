@@ -1,8 +1,10 @@
-var connection = require('../slack.js').connection,
-    Task = require('../models/index.js').Task,
-    permissions = require('../permissions/index.js'),
-    moment = require('moment'),
-    momentTimezone = require('moment-timezone');
+'use strict';
+
+import { connection } from '../slack.js';
+import { Task } from '../models';
+import permissions from '../permissions';
+import moment from 'moment';
+import 'moment-timezone';
 
 var DoneHandler = function(message) {
   var actingUser = message.user,
@@ -37,10 +39,9 @@ var DoneHandler = function(message) {
   }
 };
 
-module.exports = {
+export default {
   exec: DoneHandler,
   test: function(messageText) {
     return /^!done\s?(.+)?/.test(messageText);
   }
-}
-
+};

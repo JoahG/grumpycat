@@ -1,6 +1,8 @@
-var connection = require('../slack.js').connection,
-    permissions = require('../permissions/index.js'),
-    User = require('../models/index.js').User;
+'use strict';
+
+import { connection } from '../slack.js';
+import permissions from '../permissions';
+import { User } from '../models';
 
 var AdminHandler = function(message) {
   permissions.isAdmin(message.user, function(isAdmin) {
@@ -21,7 +23,7 @@ var AdminHandler = function(message) {
 
         user.isBanned = true;
         user.save(function() {
-          connection.sendMessage('<@' + user.id + '> is now banned.', message.channel);
+          connection.sendMessage(`<@${ user.id }> is now banned.`, message.channel);
         });
       });
     } else if (/^!admin\sunban\s\<\@(.+)\>/.test(message.text)) {
@@ -36,7 +38,7 @@ var AdminHandler = function(message) {
 
         user.isBanned = false;
         user.save(function() {
-          connection.sendMessage('<@' + user.id + '> is no longer banned.', message.channel);
+          connection.sendMessage(`<@${ user.id }> is no longer banned.`, message.channel);
         });
       });
     } else if (/^!admin\spromote\s\<\@(.+)\>/.test(message.text)) {
@@ -51,7 +53,7 @@ var AdminHandler = function(message) {
 
         user.isAdmin = true;
         user.save(function() {
-          connection.sendMessage('<@' + user.id + '> is now an admin.', message.channel);
+          connection.sendMessage(`<@${ user.id }> is now an admin.`, message.channel);
         });
       });
     } else if (/^!admin\sdemote\s\<\@(.+)\>/.test(message.text)) {
@@ -66,7 +68,7 @@ var AdminHandler = function(message) {
 
         user.isAdmin = false;
         user.save(function() {
-          connection.sendMessage('<@' + user.id + '> is no longer an admin.', message.channel);
+          connection.sendMessage(`<@${ user.id }>  is no longer an admin.`, message.channel);
         });
       });
     } else if (/^!admin\ssetKarma\s\<\@(.+)\>\s(-?\d+)/.test(message.text)) {
@@ -81,7 +83,7 @@ var AdminHandler = function(message) {
 
         user.karma = parseInt(/^!admin\ssetKarma\s\<\@(.+)\>\s(-?\d+)/.exec(message.text)[2]);
         user.save(function() {
-          connection.sendMessage('<@' + user.id + '> now has ' + user.karma.toString() + ' karma.', message.channel);
+          connection.sendMessage(`<@${ user.id }> now has ${ user.karma.toString() } karma.`, message.channel);
         });
       });
     }
@@ -89,7 +91,7 @@ var AdminHandler = function(message) {
 };
 
 
-module.exports = {
+export default {
   exec: AdminHandler,
   test: function(messageText) {
     return /^!admin\s(ban|unban|promote|demote|setKarma)\s\<\@.+\>/.test(messageText);

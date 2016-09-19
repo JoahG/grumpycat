@@ -15,6 +15,9 @@
   "homepage": "https://github.com/joahg/grumpycat#readme",
   "dependencies": {
     "@slack/client": "^3.6.0",
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-register": "^6.14.0",
     "express": "^4.14.0",
     "moment": "^2.15.0",
     "moment-timezone": "^0.5.5",

@@ -1,4 +1,6 @@
-var connection = require('../slack.js').connection;
+'use strict';
+
+import { connection } from '../slack.js';
 
 var DecideHandler = function(message) {
   var choices = message.text.split('!decide')[1].split(' or ');
@@ -6,7 +8,7 @@ var DecideHandler = function(message) {
   connection.sendMessage(choices[[Math.floor(Math.random() * choices.length)]], message.channel)
 };
 
-module.exports = {
+export default {
   exec: DecideHandler,
   test: function(messageText) {
     return /^\!decide/.test(messageText);

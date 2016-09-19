@@ -1,10 +1,11 @@
-// Start server
-// Express server is only required when deploying to Heroku, 
-// which requires a port binding within 60secs of startup.
-var app = require('./modules/server.js');
+'use strict';
 
-// Set up Slack Client
-var SlackClient = require('./modules/slack.js');
+require('babel-register');
 
-// Set up Event Handler
-var Router = require('./modules/router.js');
+// * Start server
+//     Express server is only required when deploying to Heroku, 
+//     which requires a port binding within 60secs of startup.
+// * Set up Slack Client
+// * Set up Event Handler
+
+require('./src');
