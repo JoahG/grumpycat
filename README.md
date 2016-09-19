@@ -10,7 +10,7 @@ Slack bot with some simple utilities
       - username "grumpycat" is suggested
       - you can use the profile image/icon from above
    2. Copy the API token from the bot settings page to your clipboard
-   3. Click this button: 
+   3. Click this button:    
       [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
    4. Paste the API Token in the `SLACK_API_TOKEN` environment variable on Heroku
       - *Optional: set `ADMIN_USERS` and/or `BANNED_USERS` environment variables to set permanent Admin users/permanently Banned users*
