@@ -43,6 +43,17 @@ Slack bot with some simple utilities
   - You can also optionally set permanently banned users in a comma-delimited list in the `BANNED_USERS` environment variable.
   - Code: [`/modules/events/admin.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/admin.js)
 
+### Task tracker
+
+  - Add new completed tasks with `!done [task]`
+  - Retrieve all completed tasks from today with `!done`
+  - Code: [`/modules/events/done.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/done.js)
+
+### Eightball
+
+  - Ask grumpycat questions with `@grumpycat [your question here]?`, and he will respond
+  - Code: [`/modules/events/eightball.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/eightball.js)
+
 ## Contributing
 
 Submit an [issue](https://github.com/JoahG/grumpycat/issues) or open a [pull request](https://github.com/JoahG/grumpycat/pulls) if you want to help contribute to the project.

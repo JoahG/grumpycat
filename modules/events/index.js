@@ -3,5 +3,6 @@ module.exports = {
   KarmaHandler: require('./karma.js'),
   InfoHandler: require('./info.js'),
   AdminHandler: require('./admin.js'),
-  EightballHandler: require('./eightball.js')
+  EightballHandler: require('./eightball.js'),
+  DoneHandler: require('./done.js')
 }
