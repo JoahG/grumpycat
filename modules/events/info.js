@@ -2,7 +2,7 @@ var connection = require('../slack.js').connection,
     InfoValue = require('../models/index.js').InfoValue,
     permissions = require('../permissions/index.js');
 
-module.exports = function(message) {
+var InfoHandler = function(message) {
   if (/^!info\s(.+)/.test(message.text)) {
     InfoValue.findOne({
       key: /^!info\s(.+)/.exec(message.text)[1]
@@ -61,5 +61,12 @@ module.exports = function(message) {
         connection.sendMessage('No results.', message.channel)
       }
     });
+  }
+};
+
+module.exports = {
+  exec: InfoHandler,
+  test: function(messageText) {
+    return /^!(info|learn|forget|find)\s(.+)/.test(messageText);
   }
 };

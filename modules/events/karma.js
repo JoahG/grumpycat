@@ -2,7 +2,7 @@ var connection = require('../slack.js').connection,
     User = require('../models/index.js').User,
     permissions = require('../permissions/index.js');
 
-module.exports = function(message) {
+var KarmaHandler = function(message) {
   var actingUser = message.user,
       targetedUser = /\<\@(\w+)\>/gi.exec(message.text)[1],
       action = undefined;
@@ -46,3 +46,10 @@ module.exports = function(message) {
     });
   });
 };
+
+module.exports = {
+  exec: KarmaHandler,
+  test: function(messageText) {
+    return /\<\@\w+\>(\+\+|\-\-|\—)/gi.test(messageText);
+  }
+}

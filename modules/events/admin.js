@@ -2,7 +2,7 @@ var connection = require('../slack.js').connection,
     permissions = require('../permissions/index.js'),
     User = require('../models/index.js').User;
 
-module.exports = function(message) {
+var AdminHandler = function(message) {
   permissions.isAdmin(message.user, function(isAdmin) {
     if (!isAdmin) {
       connection.sendMessage('You\'re not an admin.', message.channel);
@@ -86,4 +86,12 @@ module.exports = function(message) {
       });
     }
   });
+};
+
+
+module.exports = {
+  exec: AdminHandler,
+  test: function(messageText) {
+    return /^!admin\s(ban|unban|promote|demote|setKarma)\s\<\@.+\>/.test(messageText);
+  }
 };
