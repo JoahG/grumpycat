@@ -10,13 +10,13 @@ Slack bot with some simple utilities
 
    - Keeps track of a user's karma
    - Usage: `@username++` or `@username--`
-   - Code: [`/modules/events/karma.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/karma.js)
+   - Code: [`/src/events/karma.js`](https://github.com/JoahG/grumpycat/blob/master/src/events/karma.js)
 
 ### Decide
 
    - Decides between two (or more) things 
    - Usage: `!decide this or that`
-   - Code: [`/modules/events/decide.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/decide.js)
+   - Code: [`/src/events/decide.js`](https://github.com/JoahG/grumpycat/blob/master/src/events/decide.js)
 
 ### Info
 
@@ -27,7 +27,7 @@ Slack bot with some simple utilities
      - Forget info: `!forget [key]`
      - Search info: `!find [key]`
         - Does a search on the keys in the database for the queried key.
-  - Code: [`/modules/events/info.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/info.js)
+  - Code: [`/src/events/info.js`](https://github.com/JoahG/grumpycat/blob/master/src/events/info.js)
 
 ### Permissions/Admin tools
 
@@ -41,18 +41,18 @@ Slack bot with some simple utilities
     - `!admin setKarma @username [karmaAmount]` - sets karma value on user
   - The initial (and permanent) Admin users should be set in a comma-delimited list in the `ADMIN_USERS` environment variable.
   - You can also optionally set permanently banned users in a comma-delimited list in the `BANNED_USERS` environment variable.
-  - Code: [`/modules/events/admin.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/admin.js)
+  - Code: [`/src/events/admin.js`](https://github.com/JoahG/grumpycat/blob/master/src/events/admin.js)
 
 ### Task tracker
 
   - Add new completed tasks with `!done [task]`
   - Retrieve all completed tasks from today with `!done`
-  - Code: [`/modules/events/done.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/done.js)
+  - Code: [`/src/events/done.js`](https://github.com/JoahG/grumpycat/blob/master/src/events/done.js)
 
 ### Eightball
 
   - Ask grumpycat questions with `@grumpycat [your question here]?`, and he will respond
-  - Code: [`/modules/events/eightball.js`](https://github.com/JoahG/grumpycat/blob/master/modules/events/eightball.js)
+  - Code: [`/src/events/eightball.js`](https://github.com/JoahG/grumpycat/blob/master/src/events/eightball.js)
 
 ## Contributing
 
