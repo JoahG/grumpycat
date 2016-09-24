@@ -32,6 +32,6 @@ var EightballHandler = function(message) {
 export default {
   exec: EightballHandler,
   test: function(messageText) {
-    return /\<\@(.*)\>.*\?/gi.test(messageText) && /\<\@(.*)\>.*\?/gi.exec(messageText)[1] == connection.activeUserId;
+    return /\<\@(\w*)\>.*\?/gi.test(messageText) && /\<\@(\w*)\>.*\?/gi.exec(messageText)[1] == connection.activeUserId;
   }
 };
