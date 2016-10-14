@@ -70,4 +70,4 @@ Slack bot with some simple utilities
 
 Submit an [issue](https://github.com/JoahG/grumpycat/issues) or open a [pull request](https://github.com/JoahG/grumpycat/pulls) if you want to help contribute to the project.
 
-(MIT License) - Copyright (c) 2016 Joah Gerstenberg
+(MIT License) - Copyright &copy; 2016 Joah Gerstenberg
