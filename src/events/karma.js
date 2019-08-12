@@ -6,7 +6,7 @@ import { isBanned } from '../permissions';
 
 var KarmaHandler = function(message) {
   var actingUser = message.user,
-      targetedUser = /\s*\<\@(\w+)\>/gi.exec(message.text)[1],
+      targetedUser = /\<\@(\w+)\>/gi.exec(message.text)[1],
       action = undefined;
 
   isBanned(actingUser, function(isBanned) {
@@ -15,14 +15,14 @@ var KarmaHandler = function(message) {
       return false;
     }
 
-    if (/\s*\<\@\w+\>(\+\+)/gi.test(message.text)) {
+    if (/\<\@\w+\>(\+\+)/gi.test(message.text)) {
       if (targetedUser == actingUser) {
         connection.sendMessage('You can\'t upvote yourself, dumbass', message.channel);
         return;
       }
 
       action = 'upvote';
-    } else if (/\s*\<\@\w+\>(\-\-|\—)/gi.test(message.text)) {
+    } else if (/\<\@\w+\>(\-\-|\—)/gi.test(message.text)) {
       action = 'downvote';
     }
 
@@ -54,6 +54,6 @@ var KarmaHandler = function(message) {
 export default {
   exec: KarmaHandler,
   test: function(messageText) {
-    return /\s*\<\@\w+\>(\+\+|\-\-|\—)/gi.test(messageText);
+    return /\<\@\w+\>(\+\+|\-\-|\—)/gi.test(messageText);
   }
 };
