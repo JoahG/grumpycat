@@ -15,14 +15,14 @@ var KarmaHandler = function(message) {
       return false;
     }
 
-    if (/\<\@\w+\>(\+\+)/gi.test(message.text)) {
+    if (/\<\@\w+\>\s?(\+\+)/gi.test(message.text)) {
       if (targetedUser == actingUser) {
         connection.sendMessage('You can\'t upvote yourself, dumbass', message.channel);
         return;
       }
 
       action = 'upvote';
-    } else if (/\<\@\w+\>(\-\-|\—)/gi.test(message.text)) {
+    } else if (/\<\@\w+\>\s?(\-\-|\—)/gi.test(message.text)) {
       action = 'downvote';
     }
 
@@ -54,6 +54,6 @@ var KarmaHandler = function(message) {
 export default {
   exec: KarmaHandler,
   test: function(messageText) {
-    return /\<\@\w+\>(\+\+|\-\-|\—)/gi.test(messageText);
+    return /\<\@\w+\>\s?(\+\+|\-\-|\—)/gi.test(messageText);
   }
 };
