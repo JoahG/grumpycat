@@ -5,6 +5,7 @@ import { User } from '../models';;
 
 var LeaderboardHandler = function(message) {
   User.find({ }, function (err, users) {
+    console.log(users);
     connection.sendMessage(users.sort(function(a, b) {
       if (a.karma < b.karma) return 1;
       if (b.karma < a.karma) return -1;
@@ -18,6 +19,6 @@ var LeaderboardHandler = function(message) {
 export default {
   exec: LeaderboardHandler,
   test: function(messageText) {
-    return /^\!decide$/.test(messageText);
+    return /^\!leaderboard$/.test(messageText);
   }
 };
